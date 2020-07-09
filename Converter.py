@@ -20,6 +20,9 @@ Editors:
 [4] - Get a pie chart of all the used editors.
 [5] - Get a bar chart of all the used editors.
 --------------------------------------------
+Languages:
+[6] - Get a pie chart of all the used Languages.
+[7] -
 """
 
 
@@ -60,7 +63,13 @@ def BarGraph():
     plt.bar(Days, HoursPerDay, 
         width = 0.8, color = ['green', 'green']) 
     plt.ylabel("Hours")
-    plt.xlabel("Days")
+    plt.xlabel("Days") 
+
+    what = str(input("Do you want to save this? (y/n): ")).lower()
+    if what == "y":
+        name = str(input("Enter the name for the file: "))
+        plt.savefig("./output/" + name)
+        print("File saved!")
     plt.show()
 
 #2
@@ -78,6 +87,12 @@ def MakeGraph():
     plt.plot(Days, HoursPerDay)
     plt.ylabel("Hours")
     plt.xlabel("Days")
+
+    what = str(input("Do you want to save this? (y/n): ")).lower()
+    if what == "y":
+        name = str(input("Enter the name for the file: "))
+        plt.savefig("./output/" + name)
+        print("File saved!")
     plt.show()
 
 #3
@@ -135,8 +150,13 @@ def MakePieChart():
     patches, texts = plt.pie(Amount, startangle=90)
     plt.legend( loc = 'right', labels=['%s, %1.1f %%' % (l, s) for l, s in zip(Editors, Amount)])
     plt.axis('equal')
-    plt.tight_layout()
-    
+    plt.tight_layout()   
+
+    what = str(input("Do you want to save this? (y/n): ")).lower()
+    if what == "y":
+        name = str(input("Enter the name for the file: "))
+        plt.savefig("./output/" + name)
+        print("File saved!")
     plt.show()
 
 #5
@@ -165,8 +185,53 @@ def MakeBarChart():
     fig, ax = plt.subplots()
     plt.bar(x, Amount)
     plt.xticks(x, Editors)
+
+    what = str(input("Do you want to save this? (y/n): ")).lower()
+    if what == "y":
+        name = str(input("Enter the name for the file: "))
+        plt.savefig("./output/" + name)
+        print("File saved!")
+
     plt.show()
 
+#6
+def GetLanguagePieChart():
+    Languages = []
+    Amount = []
+    total = []
+    for i in range(len(data["days"])):
+        temp = len(data["days"][i]["languages"])  
+        for x in range(temp):
+            name = data["days"][i]["languages"][x]["name"]
+            total.append(name)
+            if name not in Languages:
+                Languages.append(name)
+        
+    for i in range(len(Languages)): 
+        EditorName = (Languages[i])
+        temptemp = 0
+        for f in range(len(total)):
+            tempName = (total[f])
+            if EditorName == tempName:
+                temptemp +=1
+        Amount.append(temptemp)
+
+    patches, texts = plt.pie(Amount, startangle=90)
+    plt.legend( loc = 'right', labels=['%s, %1.1f %%' % (l, s) for l, s in zip(Languages, Amount)])
+    plt.axis('equal')
+    plt.tight_layout()
+    what = str(input("Do you want to save this? (y/n): ")).lower()
+    if what == "y":
+        name = str(input("Enter the name for the file: "))
+        plt.savefig("./output/" + name)
+        print("File saved!")
+
+    plt.show()
+
+#7
+def GetLanguageText():
+    print("Work on dis")
+    
 print(SendDis)
 inp = int(input("Enter the index of your choice: "))
 
@@ -182,3 +247,7 @@ elif (inp==4):
     MakePieChart()
 elif (inp==5):
     MakeBarChart()
+elif (inp==6):
+    GetLanguagePieChart()
+elif (inp==6):
+    GetLanguageText()
