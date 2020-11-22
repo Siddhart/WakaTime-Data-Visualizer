@@ -22,7 +22,6 @@ Editors:
 --------------------------------------------
 Languages:
 [6] - Get a pie chart of all the used Languages.
-[7] -
 """
 
 
