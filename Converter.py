@@ -226,10 +226,6 @@ def GetLanguagePieChart():
         print("File saved!")
 
     plt.show()
-
-#7
-def GetLanguageText():
-    print("Work on dis")
     
 print(SendDis)
 inp = int(input("Enter the index of your choice: "))
@@ -248,5 +244,3 @@ elif (inp==5):
     MakeBarChart()
 elif (inp==6):
     GetLanguagePieChart()
-elif (inp==6):
-    GetLanguageText()
