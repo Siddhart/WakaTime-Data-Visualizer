@@ -1,2 +1,6 @@
 /test.py
 /piecharttest.py
+*.idea
+*.vscode
+*output
+*.json

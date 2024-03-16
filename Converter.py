@@ -34,6 +34,9 @@ fileName = "./input/" + arr[0]
 
 with open(fileName) as json_file:
     data = json.load(json_file)
+    if data=={}:
+        print("data is empty")
+        exit(-1)
 
 
 #0
@@ -67,6 +70,8 @@ def BarGraph():
     what = str(input("Do you want to save this? (y/n): ")).lower()
     if what == "y":
         name = str(input("Enter the name for the file: "))
+        if not os.path.exists("./output/"):
+            os.mkdir("./output/")
         plt.savefig("./output/" + name)
         print("File saved!")
     plt.show()
